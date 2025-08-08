@@ -68,3 +68,4 @@ with ThreadPoolExecutor(max_workers=len(browsers)) as executor:
 
 
 
+https://chatgpt.com/share/6895b8fd-86a4-8005-9a1d-a820512ae374
