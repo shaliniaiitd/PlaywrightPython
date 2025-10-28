@@ -1,5 +1,7 @@
 
 import pytest
+from playwright.sync_api import Playwright, sync_playwright, Page
+
 
 
 @pytest.fixture(scope="function", autouse=True)
