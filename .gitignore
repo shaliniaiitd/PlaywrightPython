@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Virtual environments
+venv/
+.env/
+play_venv/
+ENV/
+env/
+.venv/
+
+# IDE and OS files
+.idea/
+.vscode/
+.DS_Store
+
+# Playwright and test outputs
+test-results/
+trace.zip
+videos/
+screenshots/
