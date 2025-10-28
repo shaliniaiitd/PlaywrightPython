@@ -1,0 +1,44 @@
+project_root/
+│
+├── tests/
+│   ├── features/
+│   │   ├── login.feature
+│   │   ├── search.feature
+│   │   └── conftest.py
+│   │
+│   ├── step_definitions/
+│   │   ├── login_steps.py
+│   │   ├── search_steps.py
+│   │   └── common_steps.py
+│   │
+│   ├── pages/
+│   │   ├── login_page.py
+│   │   ├── home_page.py
+│   │   └── base_page.py
+│   │
+│   ├── fixtures/
+│   │   ├── browser_fixture.py
+│   │   ├── api_fixture.py
+│   │   └── db_fixture.py
+│   │
+│   ├── utils/
+│   │   ├── logger.py
+│   │   ├── config_reader.py
+│   │   └── helpers.py
+│   │
+│   ├── conftest.py
+│   └── pytest.ini
+│
+├── configs/
+│   ├── config.yaml
+│   ├── testdata.json
+│   └── environment.json
+│
+├── reports/
+│   ├── allure-results/
+│   ├── allure-report/
+│   └── logs/
+│
+├── requirements.txt
+├── README.md
+└── run_tests.py

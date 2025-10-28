@@ -1,0 +1,244 @@
+
+
+Here’s a detailed **Selenium vs Playwright command comparison table** — grouped by common categories 👇
+
+---
+
+## 🧭 **Browser and Page Navigation**
+
+| Action            | Selenium                            | Playwright                                             |
+| ----------------- | ----------------------------------- | ------------------------------------------------------ |
+| Launch browser    | `driver = webdriver.Chrome()`       | `browser = p.chromium.launch()`                        |
+| Open URL          | `driver.get("https://example.com")` | `page.goto("https://example.com")`                     |
+| Get current URL   | `driver.current_url`                | `page.url`                                             |
+| Get page title    | `driver.title`                      | `page.title()`                                         |
+| Go back           | `driver.back()`                     | `page.go_back()`                                       |
+| Go forward        | `driver.forward()`                  | `page.go_forward()`                                    |
+| Refresh page      | `driver.refresh()`                  | `page.reload()`                                        |
+| Maximize window   | `driver.maximize_window()`          | `page.set_viewport_size({"width":1920,"height":1080})` |
+| Minimize window   | `driver.minimize_window()`          | `page.set_viewport_size({"width":100,"height":100})`   |
+| Close current tab | `driver.close()`                    | `page.close()`                                         |
+| Quit browser      | `driver.quit()`                     | `browser.close()`                                      |
+
+---
+
+## 🧱 **Locating and Interacting with Elements**
+
+| Action                | Selenium                                        | Playwright                                              |
+| --------------------- | ----------------------------------------------- | ------------------------------------------------------- |
+| Find element (CSS)    | `driver.find_element(By.CSS_SELECTOR, "input")` | `page.locator("input")`                                 |
+| Click element         | `element.click()`                               | `page.click("selector")`                                |
+| Send text             | `element.send_keys("hello")`                    | `page.fill("selector", "hello")`                        |
+| Clear text            | `element.clear()`                               | `page.fill("selector", "")`                             |
+| Get text              | `element.text`                                  | `page.text_content("selector")`                         |
+| Get attribute         | `element.get_attribute("href")`                 | `page.get_attribute("selector", "href")`                |
+| Check element visible | `element.is_displayed()`                        | `page.is_visible("selector")`                           |
+| Check element enabled | `element.is_enabled()`                          | `page.is_enabled("selector")`                           |
+| Get tag name          | `element.tag_name`                              | `page.eval_on_selector("selector", "el => el.tagName")` |
+
+---
+
+## 🕹️ **Waiting and Sync**
+
+| Action              | Selenium                               | Playwright                           |
+| ------------------- | -------------------------------------- | ------------------------------------ |
+| Implicit wait       | `driver.implicitly_wait(10)`           | *(Not used — Playwright auto-waits)* |
+| Explicit wait       | `WebDriverWait(driver, 10).until(...)` | `page.wait_for_selector("selector")` |
+| Wait for navigation | `driver.get("url")` (then sleep)       | `page.wait_for_load_state("load")`   |
+| Sleep               | `time.sleep(2)`                        | `page.wait_for_timeout(2000)`        |
+
+---
+
+## 🍪 **Cookies and Storage**
+
+| Action             | Selenium                                           | Playwright                                                                         |
+| ------------------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Get cookies        | `driver.get_cookies()`                             | `context.cookies()`                                                                |
+| Add cookie         | `driver.add_cookie({'name':'test','value':'123'})` | `context.add_cookies([{'name':'test','value':'123','url':'https://example.com'}])` |
+| Delete all cookies | `driver.delete_all_cookies()`                      | `context.clear_cookies()`                                                          |
+
+---
+
+## 🧾 **Page Content & Source**
+
+| Action          | Selenium                          | Playwright                      |
+| --------------- | --------------------------------- | ------------------------------- |
+| Get page source | `driver.page_source`              | `page.content()`                |
+| Get title       | `driver.title`                    | `page.title()`                  |
+| Take screenshot | `driver.save_screenshot("s.png")` | `page.screenshot(path="s.png")` |
+
+---
+
+## 🪟 **Frames, Tabs & Alerts**
+
+| Action            | Selenium                                             | Playwright                                |
+| ----------------- | ---------------------------------------------------- | ----------------------------------------- |
+| Switch frame      | `driver.switch_to.frame("name")`                     | `frame = page.frame(name="frameName")`    |
+| Switch to default | `driver.switch_to.default_content()`                 | `page.main_frame`                         |
+| Open new tab      | `driver.switch_to.new_window('tab')`                 | `context.new_page()`                      |
+| Handle alert      | `alert = driver.switch_to.alert`<br>`alert.accept()` | `page.on("dialog", lambda d: d.accept())` |
+
+---
+
+## ⚙️ **Miscellaneous**
+
+| Action               | Selenium                                         | Playwright                                         |
+| -------------------- | ------------------------------------------------ | -------------------------------------------------- |
+| Get window handles   | `driver.window_handles`                          | `context.pages`                                    |
+| Execute JS           | `driver.execute_script("return document.title")` | `page.evaluate("() => document.title")`            |
+| Screenshot full page | `driver.save_screenshot("full.png")`             | `page.screenshot(path="full.png", full_page=True)` |
+
+---
+
+## 🧪 Example Summary
+
+```python
+# Selenium
+driver.get("https://google.com")
+print(driver.title)
+driver.back()
+driver.quit()
+```
+
+```python
+# Playwright
+page.goto("https://google.com")
+print(page.title())
+page.go_back()
+browser.close()
+```
+
+---
+
+
+The table above already covers about **90–95% of real-world Selenium ↔ Playwright command mappings**, but let’s **make it *truly exhaustive*** — by adding the **remaining advanced, rarely documented, but useful** equivalences.
+
+Here’s your **extended “Selenium vs Playwright Complete Comparison Cheat Sheet”**, updated and grouped by advanced categories 👇
+
+---
+
+## 🧠 **Session and Context Handling**
+
+| Action                     | Selenium                                                     | Playwright                                                          |
+| -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------- |
+| Create new browser profile | Use `webdriver.ChromeOptions()` with custom user-data-dir    | `context = browser.new_context(storage_state="path/to/state.json")` |
+| Get current session        | `driver.session_id`                                          | *(Not applicable — handled internally)*                             |
+| Run multiple sessions      | Multiple driver instances                                    | Multiple `browser.new_context()` instances                          |
+| Incognito mode             | `webdriver.Chrome(options=opts.add_argument("--incognito"))` | `browser.new_context()` *(default is incognito)*                    |
+
+---
+
+## 🌍 **Network Controls**
+
+| Action               | Selenium                                     | Playwright                                                                                                |
+| -------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Block URLs           | Requires proxy setup                         | `context.route("**/*", lambda route: route.abort() if "ads" in route.request.url else route.continue_())` |
+| Intercept requests   | Limited via `devtools` or external tools     | `page.route("**/*", handler)`                                                                             |
+| Modify response      | Not native                                   | `page.route("**/*", lambda route: route.fulfill(status=200, body="Mocked"))`                              |
+| Capture network logs | Use `performance` logs or `browsermob-proxy` | `page.on("request", ...)`, `page.on("response", ...)`                                                     |
+| Emulate offline      | `driver.set_network_conditions(...)`         | `context.set_offline(True)`                                                                               |
+
+---
+
+## 📱 **Device & Geolocation Emulation**
+
+| Action           | Selenium                                                                | Playwright                                                      |
+| ---------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------- |
+| Mobile emulation | Use `ChromeOptions().add_experimental_option('mobileEmulation', {...})` | `browser.new_context(**playwright.devices["iPhone 13"])`        |
+| Set user agent   | `driver.execute_cdp_cmd("Network.setUserAgentOverride", {...})`         | `context = browser.new_context(user_agent="MyAgent")`           |
+| Set geolocation  | Chrome DevTools only                                                    | `context.set_geolocation({"latitude":12.97,"longitude":77.59})` |
+| Set timezone     | Not supported                                                           | `context = browser.new_context(timezone_id="Asia/Kolkata")`     |
+
+---
+
+## 🧩 **Keyboard and Mouse Actions**
+
+| Action       | Selenium                                                  | Playwright                               |
+| ------------ | --------------------------------------------------------- | ---------------------------------------- |
+| Click        | `element.click()`                                         | `page.click("selector")`                 |
+| Double click | `ActionChains(driver).double_click(element).perform()`    | `page.dblclick("selector")`              |
+| Right click  | `ActionChains(driver).context_click(element).perform()`   | `page.click("selector", button="right")` |
+| Hover        | `ActionChains(driver).move_to_element(element).perform()` | `page.hover("selector")`                 |
+| Drag & drop  | `ActionChains(driver).drag_and_drop(src, dest)`           | `page.drag_and_drop("src", "dest")`      |
+| Type keys    | `element.send_keys("text")`                               | `page.keyboard.type("text")`             |
+| Press key    | `element.send_keys(Keys.ENTER)`                           | `page.keyboard.press("Enter")`           |
+| Scroll       | Execute JS                                                | `page.mouse.wheel(0, 500)`               |
+
+---
+
+## 🎥 **Screenshots & Videos**
+
+| Action               | Selenium                          | Playwright                                                              |
+| -------------------- | --------------------------------- | ----------------------------------------------------------------------- |
+| Take screenshot      | `driver.save_screenshot("a.png")` | `page.screenshot(path="a.png")`                                         |
+| Full-page screenshot | Custom JS                         | `page.screenshot(path="a.png", full_page=True)`                         |
+| Record video         | Not built-in                      | `context = browser.new_context(record_video_dir="videos/")`             |
+| Save trace           | Not available                     | `context.tracing.start(...)` / `context.tracing.stop(path="trace.zip")` |
+
+---
+
+## 🧾 **Assertions & Test Integration**
+
+| Action                | Selenium (Pytest)                      | Playwright (Pytest)                                      |
+| --------------------- | -------------------------------------- | -------------------------------------------------------- |
+| Check title           | `assert "Google" in driver.title`      | `expect(page).to_have_title(re.compile("Google"))`       |
+| Check element visible | `assert element.is_displayed()`        | `expect(page.locator("selector")).to_be_visible()`       |
+| Check URL             | `assert "login" in driver.current_url` | `expect(page).to_have_url(re.compile("login"))`          |
+| Assert text           | `assert element.text == "Hello"`       | `expect(page.locator("selector")).to_have_text("Hello")` |
+
+---
+
+## 🧹 **Downloads and Uploads**
+
+| Action        | Selenium                              | Playwright                                                      |
+| ------------- | ------------------------------------- | --------------------------------------------------------------- |
+| File upload   | `element.send_keys("/path/file.txt")` | `page.set_input_files("input[type=file]", "path/file.txt")`     |
+| File download | Requires auto-download setting        | `with page.expect_download() as d: page.click("text=Download")` |
+
+---
+
+## 🪞 **Popups and Tabs**
+
+| Action            | Selenium                                                    | Playwright                                                   |
+| ----------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Handle new window | `driver.window_handles` + `driver.switch_to.window(handle)` | `with context.expect_page() as new_page: page.click("link")` |
+| Close current tab | `driver.close()`                                            | `page.close()`                                               |
+| Switch to window  | `driver.switch_to.window(handle)`                           | Use `context.pages[index]`                                   |
+
+---
+
+## ⚡ **Performance & Logging**
+
+| Action                      | Selenium                                                    | Playwright                                        |
+| --------------------------- | ----------------------------------------------------------- | ------------------------------------------------- |
+| Capture console logs        | `driver.get_log("browser")`                                 | `page.on("console", lambda msg: print(msg.text))` |
+| Capture performance metrics | `driver.execute_script("return window.performance.timing")` | `page.evaluate("() => performance.timing")`       |
+| Measure time                | Custom code                                                 | Built-in tracing or timing APIs                   |
+
+---
+
+## 🧰 **Environment Setup**
+
+| Action            | Selenium                          | Playwright                                     |
+| ----------------- | --------------------------------- | ---------------------------------------------- |
+| Install           | `pip install selenium`            | `pip install playwright && playwright install` |
+| Driver management | Manual (chromedriver/geckodriver) | Automatic via Playwright                       |
+| Parallel tests    | Selenium Grid                     | Built-in parallelization in pytest-playwright  |
+
+---
+
+## ✅ **Summary of Strengths**
+
+| Feature          | Selenium                        | Playwright                      |
+| ---------------- | ------------------------------- | ------------------------------- |
+| Setup simplicity | ❌ Requires drivers              | ✅ Built-in drivers              |
+| Auto-waiting     | ❌ Manual waits needed           | ✅ Smart auto-wait               |
+| Cross-browser    | ✅ Chrome, Firefox, Edge, Safari | ✅ Chrome, Edge, Firefox, WebKit |
+| Network mocking  | ⚠️ Limited                      | ✅ Excellent                     |
+| Mobile emulation | ✅ Partial                       | ✅ Full (via device profiles)    |
+| Video recording  | ❌ No                            | ✅ Yes                           |
+| Speed            | ⚠️ Slower                       | ✅ Much faster                   |
+| Debugging tools  | ✅ Good                          | ✅ Great (Trace Viewer)          |
+
+---
+

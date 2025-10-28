@@ -1,0 +1,71 @@
+1. Installations:
+pip install playwright
+python -m playwright install
+
+2. Playwright is more robust and avoids common issues like stale element references automatically.
+3. Dynamic Locator Handling:Used page.locator to identify rows and the "Next" button. Playwright automatically handles dynamic elements better than Selenium.
+4. .inner_text() to fetch the text content of elements.
+5. page.wait_for_load_state("domcontentloaded") ensures the page is fully loaded after clicking "Next."
+6. locator.nth(index) to iterate through rows and cells efficiently.
+7. Playwright's locator does not use XPath selectors inside locator calls for children (like ./td[1]). Instead, Playwright uses CSS selectors for child locators, even if the parent locator is XPath-based.So,
+replaced ./td[1] with td:nth-child(1)
+Replaced ./td with td:
+8. in Playwright, you can navigate from a child element to its parent using the locator.locator('..') syntax
+Example:
+# Locate a specific child element
+    child = page.locator('text=Child 1')
+
+    # Navigate to its parent
+    parent = child.locator('..')
+
+    parent = page.locator('text=Child Text').locator('..')
+
+9. Playwright doesn't directly support Microsoft Edge as a separate entity, Edge uses the Chromium engine, so you launch it with the Chromium browser and point to the Edge executable.Ensure Edge is Installed.
+with sync_playwright() as p:
+    # Specify the path to the Microsoft Edge executable
+    edge_path = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"  # Adjust if installed elsewhere
+
+    # Launch Edge browser
+    browser = p.chromium.launch(headless=False, channel="msedge")
+    context = browser.new_context()
+    page = context.new_page()
+
+10. Playwright does not use a central configuration file like playwright.config.ts in the JavaScript/TypeScript ecosystem. Instead, configurations are defined directly within the Python script or by using helper functions and custom modules to encapsulate settings.
+Solution: define your configuration in a separate Python file (e.g., playwright_config.py) and import it into your test scripts.
+
+Modularity:
+
+You can store configuration details like base_url, browser type, headless mode, timeouts, and retries in a central file.
+This makes it easier to reuse and update configurations across multiple scripts.
+Dynamic Configuration:
+
+Use Python's os.environ to allow environment-specific overrides for configurations (e.g., staging vs production URLs).
+Customization:
+
+Extend the config dictionary to include other test settings, like viewport_size, slow_mo, or proxy.
+
+11. Parallel Execution: If you want to run tests concurrently, you can use Python's concurrent.futures or other parallel processing libraries.
+Per-Browser Configuration: Modify the config file to allow custom settings for each browser, like viewport size, slow motion, etc.
+
+Thread Safety: Playwright's sync_playwright context is thread-safe, so it works well with multithreading.
+
+Parallelism: Use ProcessPoolExecutor instead of ThreadPoolExecutor for CPU-bound tasks. For I/O-bound tasks like Playwright, threads are more efficient.
+
+Example:
+from concurrent.futures import ThreadPoolExecutor
+
+# Define the test logic for a single browser
+def run_test(browser_name):
+<
+>
+
+# List of browsers to test
+browsers = ["chromium", "firefox", "webkit"]
+
+# Run the test concurrently on all browsers
+with ThreadPoolExecutor(max_workers=len(browsers)) as executor:
+    executor.map(run_test, browsers)
+
+
+
+https://chatgpt.com/share/6895b8fd-86a4-8005-9a1d-a820512ae374
