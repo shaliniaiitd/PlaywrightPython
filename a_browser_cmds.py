@@ -78,6 +78,7 @@ with sync_playwright() as p:
     for browser_type in [p.chromium]:
         browser = browser_type.launch(headless=False)
         #browser = browser_type.launch(headless=False, channel = 'msedge')
+        print("*****Browser name:", browser.browser_type)
         print("Browser name:", browser_type.name)
 
         context = browser.new_context()
@@ -93,16 +94,16 @@ with sync_playwright() as p:
 
         '''
         Advantages of expect_navigation():
-    
+
     Handles SPAs or heavy JS pages
-    
+
     Ensures your next line runs after navigation completes
-    
+
     🔹 Interview Tip
-    
-    “Unlike Selenium, Playwright’s go_back() / go_forward() are fire-and-forget. You should always combine them with 
+
+    “Unlike Selenium, Playwright’s go_back() / go_forward() are fire-and-forget. You should always combine them with
     page.wait_for_load_state() or page.expect_navigation() to ensure the page has finished loading before interacting.”
-        
+
         '''
         # # Go back with explicit wait
         # with page.expect_navigation(wait_until="domcontentloaded"):
@@ -157,21 +158,21 @@ with sync_playwright() as p:
 
         '''
         elenium
-        
+
         driver.close() → Closes the current window/tab.
-        
+
         driver.quit() → Closes all windows and ends the WebDriver session.
-        
+
         Playwright
-        
+
         page → Represents a single tab/page.
-        
+
         context → Represents a browser session (isolated cookies, storage, etc.).
-        
+
         browser → Represents the browser process itself.
-        
+
         Closing methods:
-        
+
         Object	Close method	Effect
         page	page.close()	Closes that tab
         context	context.close()	Closes all pages in that context

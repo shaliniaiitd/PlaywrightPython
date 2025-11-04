@@ -5,29 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac8fe8eb-5770-4682-b22a-b45792d7f2b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/HT1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HT2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NOTES/SeleniumVsPlaywrightCmds.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NOTES/pytest-bdd framework structure" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/a_browser_cmds.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth_json.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/b_print_all_google_links.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/device_emulation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/emulations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generate_auth_json.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/search_selenium_google.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_example.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PlaywrightPython.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PlaywrightPython.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mockAPI.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/steps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/features/Example.feature" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_emulation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_mockAPI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/A2Z" beforeDir="false" afterPath="$PROJECT_DIR$/NOTES/A2Z" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NOTES" beforeDir="false" afterPath="$PROJECT_DIR$/SAKURA/NOTES" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SakuraConcurrentBrowsers.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAKURA/SakuraConcurrentBrowsers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SakuraConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAKURA/SakuraConfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/concurrentBrowsers.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAKURA/concurrentBrowsers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/playwright_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAKURA/playwright_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_installation.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAKURA/test_installation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_browser_cmds.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_browser_cmds.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-results/tests-test-example-py-test-get-started-link-chromium/trace.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-results/tests-test-example-py-test-has-title-chromium/trace.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +38,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/shaliniaiitd/PlaywrightPython.git&quot;,
+    &quot;url&quot;: &quot;git@github.com:shaliniaiitd/PlaywrightPython.git&quot;,
     &quot;accountId&quot;: &quot;6e2b4590-bf36-4115-8d80-717579002037&quot;
   }
 }</component>
@@ -67,6 +53,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python tests.Python tests in auth_json.py.executor": "Run",
+    "Python tests.Python tests in mockAPI.py.executor": "Run",
     "Python tests.Python tests in test_example.py.executor": "Run",
     "Python.1.executor": "Run",
     "Python.HT1.executor": "Run",
@@ -74,12 +61,14 @@
     "Python.SakuraConcurrentBrowsers.executor": "Run",
     "Python.SakuraUsingConfig.executor": "Run",
     "Python.SeleniumVsPlaywrightCheatsheet.executor": "Run",
+    "Python.a_browser_cmds.executor": "Run",
     "Python.browser_cmds.executor": "Run",
     "Python.concurrentBrowsers.executor": "Run",
     "Python.device_emulation.executor": "Run",
     "Python.generate_auth_json.executor": "Run",
     "Python.generate_pdf.executor": "Run",
     "Python.hiddenText.executor": "Run",
+    "Python.mockAPI.executor": "Run",
     "Python.script.executor": "Run",
     "Python.script1.executor": "Run",
     "Python.script2.executor": "Run",
@@ -89,7 +78,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/shalini-agarwal/PlaywrightPython",
+    "last_opened_file_path": "/home/shalini-agarwal/LearningAppium",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
@@ -163,7 +152,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-1f77c24022e5-d902c0275401-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-252.26830.99" />
+        <option value="bundled-python-sdk-f69e5c277ee4-cbfc7b97e6b2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-252.27397.106" />
       </set>
     </attachedChunks>
   </component>
